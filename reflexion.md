@@ -1,0 +1,6 @@
+# **Reflexión**
+
+Bianca Calderón - 22272  
+Mónica Salvatierra - 22249
+
+Regex es una primera capa útil para detectar patrones simples, pero no basta para proteger información sensible en un entorno real. Entre los falsos positivos, por ejemplo, una palabra como "token" o "clave" puede aparecer en un tutorial educativo y disparar una alerta aunque no exista un secreto real. También pueden surgir falsos positivos con nombres, códigos o frases que parecen números largos o correos. En cambio, los falsos negativos son comunes cuando el dato sensible aparece en un formato no previsto, como un correo con caracteres especiales, un teléfono escrito con espacios irregulares o un secreto oculto dentro de una cadena larga. Al redactar, se pierde contexto y se dificulta el análisis posterior, porque el texto original ya no permite revisar el valor exacto ni verificar si la detección fue correcta. Por ello, Regex debería verse como una barrera inicial, no como la única defensa. Agregaría una segunda capa basada en modelos de detección de entidades o clasificación de sensibilidad, además de controles de acceso, cifrado y políticas de manejo de datos en los sistemas que reciben el texto. Esta combinación permitiría reducir riesgos de privacidad y mejorar la confiabilidad del proceso antes de enviar información a un modelo de lenguaje.

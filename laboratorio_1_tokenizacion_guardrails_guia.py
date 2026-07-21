@@ -16,7 +16,7 @@ Ejecutar:
 
 Integrantes del equipo:
 - Bianca Calderón, 22272
-- Mónica Salvatierra, 22249
+- Mónica gomez, 22249
 
 """
 
@@ -36,7 +36,7 @@ TEXTOS_DE_PRUEBA = [
     "anticonstitucionalmente, NLP, #IA, www.example.com/manual.pdf",
     "Mi DPI simulado es 1234 56789 0101 y no deberia enviarse.",
     "Por favor, no compartas la clave ni el token en el chat.",
-    "Mi correo alternativo es monica.salvatierra@uvg.edu.gt para soporte.",
+    "Mi correo alternativo es carmen.gomez@uvg.edu.gt para soporte.",
 ]
 
 
