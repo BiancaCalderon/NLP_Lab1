@@ -166,7 +166,7 @@ def decidir_accion(hallazgos):
 
     Politica sugerida:
     - SECRET_WORD -> BLOCK
-    - EMAIL o PHONE o DPI -> REDACT
+    - EMAIL, PHONE, DPI o LONG_NUMBER -> REDACT
     - URL -> WARN
     - Sin hallazgos -> ALLOW
     """
@@ -175,7 +175,7 @@ def decidir_accion(hallazgos):
     if "SECRET_WORD" in tipos:
         return "BLOCK"
 
-    if tipos.intersection({"EMAIL", "PHONE", "DPI"}):
+    if tipos.intersection({"EMAIL", "PHONE", "DPI", "LONG_NUMBER"}):
         return "REDACT"
 
     if "URL" in tipos:

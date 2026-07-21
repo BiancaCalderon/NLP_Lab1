@@ -1,0 +1,282 @@
+Bianca Calderón - 22272
+Mónica Salvatierra - 22249
+
+================================================================================
+DEMO: COMPARACION DE TOKENIZADORES
+================================================================================
+Texto:
+Mi numero es +502 5555-1234 y mi correo es ana@uvg.edu.gt
+
+Tokenizacion por espacios:
+['Mi', 'numero', 'es', '+502', '5555-1234', 'y', 'mi', 'correo', 'es', 'ana@uvg.edu.gt']
+
+Tokenizacion Regex basica:
+['mi', 'numero', 'es', '502', '5555', '1234', 'y', 'mi', 'correo', 'es', 'ana', 'uvg', 'edu', 'gt']
+
+Tokenizacion Regex mixta:
+['Mi', 'numero', 'es', '+', '502', '5555', '-', '1234', 'y', 'mi', 'correo', 'es', 'ana@uvg.edu.gt']
+
+================================================================================
+DEMO: PIPELINE COMPLETO
+================================================================================
+
+================================================================================
+TEXTO 1
+================================================================================
+Texto original:
+Hola!!! necesito ayuda con mi cuenta :( mi correo es ana.lopez@uvg.edu.gt
+
+Texto normalizado:
+Hola!!! necesito ayuda con mi cuenta :( mi correo es ana.lopez@uvg.edu.gt
+
+Datos sensibles detectados:
+  - EMAIL: ana.lopez@uvg.edu.gt
+
+Accion recomendada: REDACT
+
+Texto seguro:
+Hola!!! necesito ayuda con mi cuenta :( mi correo es [EMAIL_REDACTED]
+
+Tokens:
+['Hola', '!', '!', '!', 'necesito', 'ayuda', 'con', 'mi', 'cuenta', ':', '(', 'mi', 'correo', 'es', '[', 'EMAIL_REDACTED', ']']
+
+Estadisticas:
+Caracteres: 69
+Tokens: 17
+Tokens unicos: 14
+Top 10 tokens:
+  - !: 3
+  - mi: 2
+  - Hola: 1
+  - necesito: 1
+  - ayuda: 1
+  - con: 1
+  - cuenta: 1
+  - :: 1
+  - (: 1
+  - correo: 1
+
+================================================================================
+TEXTO 2
+================================================================================
+Texto original:
+El modelo GPT-4.1 respondio: 'No tengo suficiente contexto.'
+
+Texto normalizado:
+El modelo GPT-4.1 respondio: 'No tengo suficiente contexto.'
+
+Datos sensibles detectados:
+  No se detectaron datos sensibles.
+
+Accion recomendada: ALLOW
+
+Texto seguro:
+El modelo GPT-4.1 respondio: 'No tengo suficiente contexto.'
+
+Tokens:
+['El', 'modelo', 'GPT', '-', '4', '.', '1', 'respondio', ':', "'", 'No', 'tengo', 'suficiente', 'contexto', '.', "'"]
+
+Estadisticas:
+Caracteres: 60
+Tokens: 16
+Tokens unicos: 14
+Top 10 tokens:
+  - .: 2
+  - ': 2
+  - El: 1
+  - modelo: 1
+  - GPT: 1
+  - -: 1
+  - 4: 1
+  - 1: 1
+  - respondio: 1
+  - :: 1
+
+================================================================================
+TEXTO 3
+================================================================================
+Texto original:
+Mi numero es +502 5555-1234 y mi sitio es https://uvg.edu.gt
+
+Texto normalizado:
+Mi numero es +502 5555-1234 y mi sitio es https://uvg.edu.gt
+
+Datos sensibles detectados:
+  - URL: https://uvg.edu.gt
+  - PHONE: +502 5555-1234
+
+Accion recomendada: REDACT
+
+Texto seguro:
+Mi numero es [PHONE_REDACTED] y mi sitio es [URL_REDACTED]
+
+Tokens:
+['Mi', 'numero', 'es', '[', 'PHONE_REDACTED', ']', 'y', 'mi', 'sitio', 'es', '[', 'URL_REDACTED', ']']
+
+Estadisticas:
+Caracteres: 58
+Tokens: 13
+Tokens unicos: 10
+Top 10 tokens:
+  - es: 2
+  - [: 2
+  - ]: 2
+  - Mi: 1
+  - numero: 1
+  - PHONE_REDACTED: 1
+  - y: 1
+  - mi: 1
+  - sitio: 1
+  - URL_REDACTED: 1
+
+================================================================================
+TEXTO 4
+================================================================================
+Texto original:
+API_KEY=abc123-super-secreta no deberia compartirse con ningun modelo.
+
+Texto normalizado:
+API_KEY=abc123-super-secreta no deberia compartirse con ningun modelo.
+
+Datos sensibles detectados:
+  - SECRET_WORD: API_KEY
+
+Accion recomendada: BLOCK
+
+Texto seguro:
+  [BLOQUEADO: no debe enviarse al modelo]
+
+Tokens:
+[]
+
+Estadisticas:
+  No se calcularon estadisticas porque el texto fue bloqueado.
+
+================================================================================
+TEXTO 5
+================================================================================
+Texto original:
+anticonstitucionalmente, NLP, #IA, www.example.com/manual.pdf
+
+Texto normalizado:
+anticonstitucionalmente, NLP, #IA, www.example.com/manual.pdf
+
+Datos sensibles detectados:
+  - URL: www.example.com/manual.pdf
+
+Accion recomendada: WARN
+
+Texto seguro:
+anticonstitucionalmente, NLP, #IA, www.example.com/manual.pdf
+
+Tokens:
+['anticonstitucionalmente', ',', 'NLP', ',', '#', 'IA', ',', 'www.example.com/manual.pdf']
+
+Estadisticas:
+Caracteres: 61
+Tokens: 8
+Tokens unicos: 6
+Top 10 tokens:
+  - ,: 3
+  - anticonstitucionalmente: 1
+  - NLP: 1
+  - #: 1
+  - IA: 1
+  - www.example.com/manual.pdf: 1
+
+================================================================================
+TEXTO 6
+================================================================================
+Texto original:
+Mi DPI simulado es 1234 56789 0101 y no deberia enviarse.
+
+Texto normalizado:
+Mi DPI simulado es 1234 56789 0101 y no deberia enviarse.
+
+Datos sensibles detectados:
+  - PHONE: 1234 56789 0101
+  - DPI: 1234 56789 0101
+
+Accion recomendada: REDACT
+
+Texto seguro:
+Mi DPI simulado es [PHONE_REDACTED] y no deberia enviarse.
+
+Tokens:
+['Mi', 'DPI', 'simulado', 'es', '[', 'PHONE_REDACTED', ']', 'y', 'no', 'deberia', 'enviarse', '.']
+
+Estadisticas:
+Caracteres: 58
+Tokens: 12
+Tokens unicos: 12
+Top 10 tokens:
+  - Mi: 1
+  - DPI: 1
+  - simulado: 1
+  - es: 1
+  - [: 1
+  - PHONE_REDACTED: 1
+  - ]: 1
+  - y: 1
+  - no: 1
+  - deberia: 1
+
+================================================================================
+TEXTO 7
+================================================================================
+Texto original:
+Por favor, no compartas la clave ni el token en el chat.
+
+Texto normalizado:
+Por favor, no compartas la clave ni el token en el chat.
+
+Datos sensibles detectados:
+  - SECRET_WORD: clave
+  - SECRET_WORD: token
+
+Accion recomendada: BLOCK
+
+Texto seguro:
+  [BLOQUEADO: no debe enviarse al modelo]
+
+Tokens:
+[]
+
+Estadisticas:
+  No se calcularon estadisticas porque el texto fue bloqueado.
+
+================================================================================
+TEXTO 8
+================================================================================
+Texto original:
+Mi correo alternativo es monica.salvatierra@uvg.edu.gt para soporte.
+
+Texto normalizado:
+Mi correo alternativo es monica.salvatierra@uvg.edu.gt para soporte.
+
+Datos sensibles detectados:
+  - EMAIL: monica.salvatierra@uvg.edu.gt
+
+Accion recomendada: REDACT
+
+Texto seguro:
+Mi correo alternativo es [EMAIL_REDACTED] para soporte.
+
+Tokens:
+['Mi', 'correo', 'alternativo', 'es', '[', 'EMAIL_REDACTED', ']', 'para', 'soporte', '.']
+
+Estadisticas:
+Caracteres: 55
+Tokens: 10
+Tokens unicos: 10
+Top 10 tokens:
+  - Mi: 1
+  - correo: 1
+  - alternativo: 1
+  - es: 1
+  - [: 1
+  - EMAIL_REDACTED: 1
+  - ]: 1
+  - para: 1
+  - soporte: 1
+  - .: 1
